@@ -16,6 +16,7 @@ export class ForecastComponent implements OnInit {
   actualDay:DayInterface;
   days:DayInterface[];
   expand:number = null;
+  error:string = null;
 
   constructor(private forecastService:ForecastService) {
 
@@ -33,12 +34,16 @@ export class ForecastComponent implements OnInit {
   refreshApi() {
     this.backdrop = true;
     this.forecastService.getWeatherForecastByCity(this.city).subscribe((city) => {
+      this.error = null;
       this.days = city.list;
       this.actualDay = this.days.shift();
       let timeoutId = setTimeout(() => {  
         this.backdrop = false;
       }, 1300);
       
+    }, (error) => {
+      this.error = 'City not found!';
+      this.backdrop = false;
     });
   }
 
