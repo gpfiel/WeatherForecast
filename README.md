@@ -59,6 +59,7 @@ https://github.com/angular/angular-cli#generating-a-route
 #### Components
 
 ForecastComponent
+DayComponent
 
 #### Services
 
@@ -66,4 +67,4 @@ ForecastService
 
 ## Vendor Services and References
 
-Open Weather Map: http://openweathermap.org/forecast16
+Open Weather Map  API: http://openweathermap.org/forecast16
