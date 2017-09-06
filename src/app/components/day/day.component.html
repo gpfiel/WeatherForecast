@@ -1,0 +1,53 @@
+<div class="panel-body">
+    <h2 class="actual-description resize-title text-info"></h2>
+    <a href="#" class="thumbnail">
+        <img *ngIf="day?.weather[0].icon != null" src="{{ 'http://openweathermap.org/img/w/' + day?.weather[0].icon + '.png' }}" title="">
+    </a>
+    <table class="table text-info">
+        <tr>
+            <td>Max</td>
+            <td><span class="text-danger temperature ">{{ day?.temp.max | number : '1.0-0' }} &deg;C</span> </td>
+            <td><span class="glyphicon glyphicon-upload text-warning img-help" aria-hidden="true"></span></td>
+        </tr>
+        <tr>
+            <td>Min</td>
+            <td><span class="text-danger temperature ">{{ day?.temp.min | number : '1.0-0' }} &deg;C</span> </td>
+            <td><span class="glyphicon glyphicon-download text-info img-help" aria-hidden="true"></span></td>
+        </tr>
+        <tr [hidden]="counter != expand && !today">
+            <td colspan="3">
+                <h4 class="text-warning">Extra informations</h4>
+            </td>
+        </tr>
+        <tr *ngIf="day?.rain" [hidden]="counter != expand && !today">
+            <td>Chance of rain: </td>
+            <td><span class="text-success temperature ">{{ day?.rain | number : '1.0-0' }} %</span></td>
+            <td></td>
+        </tr>
+        <tr *ngIf="day?.clouds" [hidden]="counter != expand && !today">
+            <td>Cloudiness: </td>
+            <td><span class="text-success temperature ">{{ day?.clouds | number : '1.0-0' }} %</span></td>
+            <td></td>
+        </tr>
+        <tr *ngIf="day?.pressure" [hidden]="counter != expand && !today">
+            <td>Atmospheric pressure: </td>
+            <td><span class="text-success temperature ">{{ day?.pressure | number : '1.0-0' }}</span></td>
+            <td></td>
+        </tr>
+        <tr *ngIf="day?.speed" [hidden]="counter != expand && !today">
+            <td>Wind speed: </td>
+            <td><span class="text-success temperature ">{{ day?.speed | number : '1.0-0' }}</span></td>
+            <td></td>
+        </tr>
+        <tr *ngIf="day?.weather" [hidden]="counter != expand && !today">
+            <td>Weather description: </td>
+            <td><span class="text-success">{{ day?.weather[0].description }}</span></td>
+            <td></td>
+        </tr>
+        <tr [hidden]="counter != expand && !today">
+            <td>Humidity: </td>
+            <td><span class="">{{ day?.humidity }}%</span></td>
+            <td></td>
+        </tr>
+    </table>
+</div>

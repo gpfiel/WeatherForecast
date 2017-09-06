@@ -9,7 +9,6 @@ export class ForecastService {
   apiUrl:string = 'http://api.openweathermap.org/data/2.5/forecast/daily?q={city}&units=metric&cnt=16&appid=';
 
   constructor(public http:Http) {
-    console.log('ForecastService: Connected;')
   }
 
   getWeatherForecastByCity(city) {

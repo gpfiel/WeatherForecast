@@ -29,7 +29,7 @@ https://angular.io/docs/ts/latest/
 To run the front-end test/development server you need to run the following:
 
 ```bash
-cd frontend
+cd WeatherForecast
 npm install
 ng serve
 ```

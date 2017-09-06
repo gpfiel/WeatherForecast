@@ -11,6 +11,7 @@ import { ForecastComponent } from './components/forecast/forecast.component';
 import { ForecastService } from './services/forecast.service';
 
 import { DayInterface } from './interfaces/day.interface';
+import { DayComponent } from './components/day/day.component';
 
 
 const appRoutes: Routes = [
@@ -20,7 +21,8 @@ const appRoutes: Routes = [
 @NgModule({
   declarations: [
     AppComponent,
-    ForecastComponent
+    ForecastComponent,
+    DayComponent
   ],
   imports: [
     BrowserModule,
