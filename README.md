@@ -1,3 +1,6 @@
+# CI Status
+
+[ ![Codeship Status](https://app.codeship.com/projects/76d92790-7557-0135-3a09-56b9cf774e39/status?branch=master)](https://app.codeship.com/projects/244213)
 
 # WeatherForecast v0.1
 
