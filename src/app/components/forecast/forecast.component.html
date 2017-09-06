@@ -1,0 +1,152 @@
+<div class="container-fluid no-padding">
+    <!-- Top -->
+    <div class="row top-bar">
+        <div class="col-lg-7 col-md-5 col-sm-5 col-xs-12">
+            <h1 class="title">Weather Forecast</h1>
+        </div>
+        <div class="col-lg-5 col-md-7 col-sm-7 col-xs-12 location">
+
+
+            <form class="form-inline" (submit)="searchApi()">
+                <div>
+                    <label for="citySearch"></label>
+                    <input #citySearch [(ngModel)]="city" class="form-group form-control" name="city" type="text">
+                    <button (click)="searchApi()" class="form-group form-control btn btn-info glyphicon glyphicon-search"></button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <!-- End Top -->
+
+    <!-- Start Content -->
+
+    <div class="row">
+
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <h1 class="page-header">Next days in <span class="text-info">{{ city }}</span></h1>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">Today: <span class="text-info">{{ (actualDay?.dt | amFromUnix) | amDateFormat:'dddd MM/DD/YYYY' }}</span></div>
+                        <div class="panel-body">
+                            <h2 class="actual-description text-info"></h2>
+                            <a href="#" class="thumbnail">
+                                <img class="imagem-atual" src="{{ 'http://openweathermap.org/img/w/' + actualDay?.weather[0].icon + '.png' }}" title="">
+                            </a>
+                            <table class="table text-info">
+                                <tr *ngIf="actualDay?.rain">
+                                    <td>Chance of rain: </td>
+                                    <td><span class="text-success temperature ">{{ actualDay?.rain | number : '1.0-0' }} %</span></td>
+                                    <td></td>
+                                </tr>
+                                <tr *ngIf="actualDay?.clouds">
+                                    <td>Cloudiness: </td>
+                                    <td><span class="text-success temperature ">{{ actualDay?.clouds | number : '1.0-0' }} %</span></td>
+                                    <td></td>
+                                </tr>
+                                <tr *ngIf="actualDay?.pressure">
+                                    <td>Atmospheric pressure: </td>
+                                    <td><span class="text-success temperature ">{{ actualDay?.pressure | number : '1.0-0' }}</span></td>
+                                    <td></td>
+                                </tr>
+                                <tr *ngIf="actualDay?.speed">
+                                    <td>Wind speed: </td>
+                                    <td><span class="text-success temperature ">{{ actualDay?.speed | number : '1.0-0' }}</span></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>Weather description: </td>
+                                    <td><span class="text-success">{{ actualDay?.weather[0].description }}</span></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>Humidity: </td>
+                                    <td><span class="">{{ actualDay?.humidity }}%</span></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>Max</td>
+                                    <td><span class="text-danger temperature ">{{ actualDay?.temp.max | number : '1.0-0' }} &deg;C</span> </td>
+                                    <td><span class="glyphicon glyphicon-upload text-warning img-help" aria-hidden="true"></span></td>
+                                </tr>
+                                <tr>
+                                    <td>Min</td>
+                                    <td><span class="text-danger temperature ">{{ actualDay?.temp.min | number : '1.0-0' }} &deg;C</span> </td>
+                                    <td><span class="glyphicon glyphicon-download text-info img-help" aria-hidden="true"></span></td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-8">
+                    <div (click)="expand != i ? expand = i : expand = null" *ngFor="let day of days; let i = index" class="div-clickable" [hidden]="expand != null && i != expand" [ngClass]="{'col-md-4': i != expand, 'col-md-12 fade-effect step-effect': i == expand }">
+                        <div class="panel panel-default box-holder-1 bordershadow">
+                            <div class="panel-heading text-info cx-dia-1">
+                                {{ (day.dt | amFromUnix) | amDateFormat:'dddd MM/DD/YYYY' }}
+                                <button class="pull-right btn-danger" [ngClass]="{'btn btn-xs': expand != null}" [hidden]="expand == null">Show All</button>
+                            </div>
+                            <div class="panel-body">
+                                <h2 class="actual-description resize-title text-info"></h2>
+                                <a href="#" class="thumbnail">
+                                    <img src="{{ 'http://openweathermap.org/img/w/' + day.weather[0].icon + '.png' }}" title="">
+                                </a>
+                                <table class="table text-info">
+                                    <tr *ngIf="day?.rain" [hidden]="i != expand">
+                                        <td>Chance of rain: </td>
+                                        <td><span class="text-success temperature ">{{ day?.rain | number : '1.0-0' }} %</span></td>
+                                        <td></td>
+                                    </tr>
+                                    <tr *ngIf="day?.clouds" [hidden]="i != expand">
+                                        <td>Cloudiness: </td>
+                                        <td><span class="text-success temperature ">{{ day?.clouds | number : '1.0-0' }} %</span></td>
+                                        <td></td>
+                                    </tr>
+                                    <tr *ngIf="day?.pressure" [hidden]="i != expand">
+                                        <td>Atmospheric pressure: </td>
+                                        <td><span class="text-success temperature ">{{ day?.pressure | number : '1.0-0' }}</span></td>
+                                        <td></td>
+                                    </tr>
+                                    <tr *ngIf="day?.speed" [hidden]="i != expand">
+                                        <td>Wind speed: </td>
+                                        <td><span class="text-success temperature ">{{ day?.speed | number : '1.0-0' }}</span></td>
+                                        <td></td>
+                                    </tr>
+                                    <tr [hidden]="i != expand">
+                                        <td>Weather description: </td>
+                                        <td><span class="text-success">{{ day?.weather[0].description }}</span></td>
+                                        <td></td>
+                                    </tr>
+                                    <tr [hidden]="i != expand">
+                                        <td>Humidity: </td>
+                                        <td><span class="">{{ day?.humidity }}%</span></td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Max</td>
+                                        <td><span class="text-danger temperature ">{{ day.temp.max | number : '1.0-0' }} &deg;C</span> </td>
+                                        <td><span class="glyphicon glyphicon-upload text-warning img-help" aria-hidden="true"></span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Min</td>
+                                        <td><span class="text-danger temperature ">{{ day.temp.min | number : '1.0-0' }} &deg;C</span> </td>
+                                        <td><span class="glyphicon glyphicon-download text-info img-help" aria-hidden="true"></span></td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <!-- End Content -->
+</div>
+
+<!-- Bouncer -->
+<div [hidden]="!backdrop" class="backdrop">
+    <div class="spinner animated bounce">
+        <span class="glyphicon glyphicon-cloud"></span>
+    </div>
+</div>
