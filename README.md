@@ -5,7 +5,7 @@
 
 ## About the Project
 
-Weather Forecast is a project to show cities weather forecast.
+Weather Forecast is a project to provide informations about the weather of a specific city.
 
 
 ## Requirements
