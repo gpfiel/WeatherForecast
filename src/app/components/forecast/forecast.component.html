@@ -7,8 +7,7 @@
         <div class="col-lg-5 col-md-7 col-sm-7 col-xs-12 location">
             <form class="form-inline" (submit)="searchApi()">
                 <div>
-                    <label for="citySearch"></label>
-                    <input #citySearch [(ngModel)]="city" class="form-group form-control" name="city" type="text">
+                    <input [(ngModel)]="city" class="form-group form-control" name="city" type="text">
                     <button (click)="searchApi()" class="form-group form-control btn btn-info glyphicon glyphicon-search"></button>
                 </div>
             </form>
@@ -24,7 +23,6 @@
                 <div class="col-md-4">
                     <div class="panel panel-default">
                         <div class="panel-heading">Today: <span class="text-info">{{ (actualDay?.dt | amFromUnix) | amDateFormat:'dddd MM/DD/YYYY' }}</span></div>
-
                         <app-day [counter]="counter" [day]="actualDay" [expand]="expand" [today]="true"></app-day>
                     </div>
                 </div>

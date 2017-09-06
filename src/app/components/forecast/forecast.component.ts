@@ -8,6 +8,7 @@ import * as moment from 'moment';
   templateUrl: './forecast.component.html',
   styleUrls: ['./forecast.component.css']
 })
+
 export class ForecastComponent implements OnInit {
   
   city:string = 'Dublin';
