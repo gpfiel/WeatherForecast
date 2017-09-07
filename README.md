@@ -40,7 +40,8 @@ npm install
 ng serve
 ```
 
-Keep your terminal running... the server will be available in http://localhost:4200/
+Keep your terminal running... 
+the server will be available in http://localhost:4200/
 
 
 ## Build
